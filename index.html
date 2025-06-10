@@ -4,47 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pomodoro Timer</title>
+    <meta name="theme-color" content="#111111">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="favicon.ico">
+    <!-- Modern font for clean look -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
+    <main class="container">
         <h1>Pomodoro Timer</h1>
 
         <!-- Mode Toggle -->
-        <div class="toggle">
+        <div class="toggle" aria-label="Toggle light/dark mode">
             <label class="switch">
-                <input type="checkbox" id="modeToggle">
+                <input type="checkbox" id="modeToggle" aria-label="Toggle light or dark mode">
                 <span class="slider round"></span>
             </label>
             <span id="modeLabel">Light Mode</span>
         </div>
 
-        <div class="timer animated">
+        <div class="timer animated" aria-live="polite" aria-atomic="true">
             <span id="minutes">25</span>:<span id="seconds">00</span>
         </div>
 
         <div class="controls">
-            <button id="start">▶ Start</button>
-            <button id="pause">⏸ Pause</button>
-            <button id="reset">🔄 Reset</button>
+            <button id="start" type="button" aria-label="Start timer">▶ Start</button>
+            <button id="pause" type="button" aria-label="Pause timer">⏸ Pause</button>
+            <button id="reset" type="button" aria-label="Reset timer">🔄 Reset</button>
         </div>
 
         <div class="settings">
-            <label>Work (min): <input type="number" id="work-duration" value="25" min="1"></label>
-            <label>Break (min): <input type="number" id="break-duration" value="5" min="1"></label>
-            <button id="apply-settings">✅ Apply</button>
+            <label for="work-duration">Work (min):</label>
+            <input type="number" id="work-duration" value="25" min="1" aria-label="Work duration in minutes">
+            <label for="break-duration">Break (min):</label>
+            <input type="number" id="break-duration" value="5" min="1" aria-label="Break duration in minutes">
+            <button id="apply-settings" type="button" aria-label="Apply settings">✅ Apply</button>
         </div>
 
-        <div class="progress-container">
+        <div class="progress-container" aria-label="Timer progress">
             <div id="progress-bar"></div>
         </div>
 
         <!-- Session History -->
-        <div class="history">
+        <section class="history" aria-label="Session history">
             <h3>Session History</h3>
             <ul id="history-list"></ul>
-        </div>
-    </div>
+        </section>
+    </main>
     <script src="script.js"></script>
 </body>
 </html>
