@@ -1,119 +1,164 @@
-/* Base */
 :root {
-    --bg-light: linear-gradient(to right, #ffecd2, #fcb69f);
-    --bg-dark: linear-gradient(to right, #232526, #414345);
-    --text-light: #2c3e50;
-    --text-dark: #ecf0f1;
-    --timer-color: #e74c3c;
-    --btn-color: #ff7675;
-    --btn-hover: #d63031;
-    --bar-color: #55efc4;
+    --bg-main: #111111;
+    --bg-secondary: #181818;
+    --bg-container: #1e1e1e;
+    --text-main: #ffffff;
+    --text-secondary: #cccccc;
+    --shadow-strong: 0 8px 32px rgba(0,0,0,0.45), 0 1.5px 4px rgba(0,0,0,0.18);
+    --shadow-btn: 0 4px 16px rgba(0,0,0,0.35), 0 1px 2px rgba(0,0,0,0.12);
+    --btn-bg: #222222;
+    --btn-bg-hover: #333333;
+    --btn-text: #fff;
+    --btn-shadow: 0 2px 8px rgba(0,0,0,0.28);
+    --timer-color: #fff;
+    --progress-bg: #232323;
+    --progress-bar: #fff;
+    --border-radius: 18px;
+    --transition: 0.3s cubic-bezier(.4,0,.2,1);
+    --font-main: 'Inter', 'Segoe UI', Arial, sans-serif;
+}
+
+/* Reset & Base */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-    font-family: 'Arial', sans-serif;
-    text-align: center;
-    background: var(--bg-light);
-    color: var(--text-light);
-    transition: background 0.5s ease, color 0.5s ease;
-    height: 100vh;
+    min-height: 100vh;
+    background: var(--bg-main);
+    color: var(--text-main);
+    font-family: var(--font-main);
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0;
-}
-
-body.dark {
-    background: var(--bg-dark);
-    color: var(--text-dark);
+    transition: background var(--transition), color var(--transition);
 }
 
 .container {
-    background: white;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-    text-align: center;
+    background: var(--bg-container);
+    color: var(--text-main);
+    padding: 40px 32px 32px 32px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-strong);
     width: 100%;
     max-width: 400px;
-    transition: background 0.5s ease;
-}
-
-body.dark .container {
-    background: #2f3542;
+    min-width: 300px;
+    text-align: center;
+    transition: background var(--transition), color var(--transition), box-shadow var(--transition);
+    position: relative;
 }
 
 h1, h3 {
-    margin-bottom: 15px;
+    margin-bottom: 18px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--text-main);
 }
 
 .timer {
-    font-size: 48px;
-    font-weight: bold;
+    font-size: 64px;
+    font-weight: 800;
     color: var(--timer-color);
-    margin: 20px 0;
-    transition: transform 0.3s ease;
+    margin: 32px 0 24px 0;
+    letter-spacing: 2px;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.35);
+    transition: color var(--transition), text-shadow var(--transition);
 }
 
 .timer.animated {
-    animation: pulse 1s ease-in-out infinite alternate;
+    animation: pulse 1.2s ease-in-out infinite alternate;
 }
 
 @keyframes pulse {
-    0% { transform: scale(1); }
-    100% { transform: scale(1.05); }
+    0% { transform: scale(1);}
+    100% { transform: scale(1.06);}
+}
+
+/* Controls & Buttons */
+.controls,
+.settings {
+    margin: 18px 0 0 0;
 }
 
 .controls button,
 .settings button {
-    margin: 5px;
-    padding: 10px 20px;
+    margin: 8px 10px;
+    padding: 12px 28px;
     border: none;
-    background: var(--btn-color);
-    color: white;
-    font-size: 16px;
-    border-radius: 5px;
+    background: var(--btn-bg);
+    color: var(--btn-text);
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 12px;
     cursor: pointer;
-    transition: background 0.3s ease;
+    box-shadow: var(--btn-shadow);
+    transition: background var(--transition), box-shadow var(--transition), transform var(--transition);
+    outline: none;
+    letter-spacing: 0.5px;
+    position: relative;
 }
 
 .controls button:hover,
 .settings button:hover {
-    background: var(--btn-hover);
+    background: var(--btn-bg-hover);
+    box-shadow: 0 6px 24px rgba(0,0,0,0.45);
+    transform: translateY(-2px) scale(1.04);
+}
+
+.controls button:active,
+.settings button:active {
+    transform: scale(0.98);
 }
 
 .settings input {
-    width: 50px;
+    width: 54px;
     text-align: center;
-    padding: 5px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    margin-left: 5px;
+    padding: 7px 0;
+    border-radius: 8px;
+    border: 1.5px solid #333;
+    background: #181818;
+    color: var(--text-main);
+    font-size: 16px;
+    margin-left: 8px;
+    margin-right: 8px;
+    outline: none;
+    transition: border var(--transition), background var(--transition);
 }
 
+.settings input:focus {
+    border: 1.5px solid #fff;
+    background: #232323;
+}
+
+/* Progress Bar */
 .progress-container {
     width: 100%;
-    height: 10px;
-    background: #dfe6e9;
-    border-radius: 5px;
-    margin-top: 20px;
+    height: 14px;
+    background: var(--progress-bg);
+    border-radius: 8px;
+    margin-top: 32px;
     overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.22);
 }
 
 #progress-bar {
     width: 0%;
     height: 100%;
-    background: var(--bar-color);
+    background: var(--progress-bar);
     transition: width 1s linear;
+    border-radius: 8px 0 0 8px;
 }
 
 /* Toggle Switch */
 .switch {
     position: relative;
     display: inline-block;
-    width: 50px;
-    height: 24px;
-    margin-bottom: 15px;
+    width: 54px;
+    height: 28px;
+    margin-bottom: 18px;
 }
 .switch input {
     opacity: 0;
@@ -122,35 +167,72 @@ h1, h3 {
 }
 .slider {
     position: absolute;
-    top: 0; left: 0;
-    right: 0; bottom: 0;
-    background-color: #ccc;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #222;
     border-radius: 34px;
-    transition: .4s;
+    transition: background var(--transition);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.22);
 }
 .slider:before {
     position: absolute;
     content: "";
-    height: 18px; width: 18px;
-    left: 4px; bottom: 3px;
-    background-color: white;
+    height: 20px; width: 20px;
+    left: 4px; bottom: 4px;
+    background-color: #fff;
     border-radius: 50%;
-    transition: .4s;
+    transition: transform var(--transition), background var(--transition);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.18);
 }
 input:checked + .slider {
-    background-color: #4cd137;
+    background-color: #fff;
 }
 input:checked + .slider:before {
+    background: #222;
     transform: translateX(26px);
 }
 
 /* History */
 .history {
-    margin-top: 20px;
+    margin-top: 32px;
     text-align: left;
+    color: var(--text-secondary);
+    font-size: 15px;
+    background: var(--bg-secondary);
+    border-radius: 10px;
+    padding: 18px 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.18);
 }
+
 #history-list {
     list-style: none;
     padding-left: 0;
-    font-size: 14px;
+    margin: 0;
+}
+
+#history-list li {
+    padding: 6px 0;
+    border-bottom: 1px solid #232323;
+}
+
+#history-list li:last-child {
+    border-bottom: none;
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+    .container {
+        padding: 24px 8px 18px 8px;
+        min-width: unset;
+    }
+    .timer {
+        font-size: 44px;
+    }
+    .controls button,
+    .settings button {
+        padding: 10px 14px;
+        font-size: 16px;
+    }
+    .progress-container {
+        height: 10px;
+    }
 }
